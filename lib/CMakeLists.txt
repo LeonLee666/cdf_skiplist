@@ -1,6 +1,0 @@
-PROJECT (demo)
-
-FILE (GLOB_RECURSE SRC_LIST "*.cpp")
-
-ADD_LIBRARY (mylib SHARED ${SRC_LIST})
-
