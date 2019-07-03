@@ -25,3 +25,5 @@ TEST(Link_test, Test_Copy) {
     l_1 = nullptr;
     ASSERT_EQ(var, l_2.val);
 }
+
+

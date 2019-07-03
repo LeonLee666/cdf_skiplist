@@ -6,9 +6,9 @@
 #define SKIPLIST_CONFIG_H
 
 
-#define DATASIZE 2097
+#define DATASIZE 2097152
 #define LEVEL 21
-#define MLEVEL 32
+#define MAXLEVEL 32
 
 
 #endif //SKIPLIST_CONFIG_H
