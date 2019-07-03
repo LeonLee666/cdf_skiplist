@@ -56,7 +56,7 @@ void loadDataSet() {
 
 int main(void) {
     loadDataSet();
-    float *key = (float*)malloc(DATASIZE * sizeof(float));
+    float *key = (float *) malloc(DATASIZE * sizeof(float));
     int i;
     struct timespec start, end;
     if (key == NULL) {

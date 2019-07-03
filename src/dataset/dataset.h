@@ -28,6 +28,27 @@ public:
         }
     }
 
+    bool getNextByEstimateCDF(float &key, size_t &level) {
+        if (itr < size) {
+            key = keys[itr];
+            size_t location = (size_t) (cdfs[itr] * size);
+            int bound = 1;
+            size_t lower_bound = (location - bound > 1) ? (location - bound) : 1;
+            size_t upper_bound = (location + bound < size) ? (location + bound) : size;
+            int lv = 0;
+            for (size_t i = lower_bound; i <= upper_bound; i++) {
+                if (level_array[i] >= lv) {
+                    lv = level_array[i];
+                    level_array[i] = 1;
+                }
+            }
+            level = lv;
+            itr++;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     bool getNextByPreciseCDF(float &key, size_t &level) {
         if (itr < size) {
@@ -48,6 +69,7 @@ public:
             return false;
         }
     }
+
     dataset() {
         size = DATASIZE;
         itr = 0;
@@ -58,6 +80,13 @@ public:
         buildArray();
         srand(12345);
     }
+
+    ~dataset() {
+        free(keys);
+        free(cdfs);
+        free(level_array);
+    }
+
 private:
     // Generating random level for Skip Nodes
     size_t random_level() {
@@ -67,6 +96,7 @@ private:
         }
         return level;
     }
+
     void loadData() {
         FILE *fid = fopen("../../dataset.txt", "r");
         if (fid == NULL) {
@@ -82,9 +112,20 @@ private:
             //printf("%f,%f\n",keys[i],cdfs[i]);
         }
     }
-    void buildArray() {
 
+    void buildArray() {
+        for (size_t i = 0; i < size; i++) {
+            level_array[i] = 0;
+        }
+        size_t step = 1;
+        while (step < size) {
+            for (size_t i = 0; i < size; i += step) {
+                ++(level_array[i]);
+            }
+            step = step << 1;
+        }
     }
+
 private:
     float *keys;
     float *cdfs;

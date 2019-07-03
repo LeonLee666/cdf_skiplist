@@ -10,7 +10,7 @@ namespace cdf_list {
     template<typename T>
     struct Skip_node {
         Skip_node(float k, T v, size_t levels) : key{k}, val{v}, levels{levels}, next{new Skip_node<T> *[levels]},
-                                               prev{new Skip_node<T> *[levels]} {
+                                                 prev{new Skip_node<T> *[levels]} {
             for (size_t i = 0; i < levels; ++i) {
                 next[i] = nullptr;
                 prev[i] = nullptr;
