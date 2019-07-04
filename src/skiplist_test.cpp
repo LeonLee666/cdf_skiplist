@@ -14,7 +14,7 @@ int main() {
 
     float key;
     size_t level;
-    int method = 0;
+    int method = 3;
     if (method == 0) {
         while (ds->getNextByRandom(key, level)) {
             sl.insert(key, key, level);
@@ -25,6 +25,10 @@ int main() {
         }
     } else if (method == 2) {
         while (ds->getNextByEstimateCDF(key, level)) {
+            sl.insert(key, key, level);
+        }
+    } else if (method == 3) {
+        while (ds->getNextByPartitionCDF(key, level)) {
             sl.insert(key, key, level);
         }
     }

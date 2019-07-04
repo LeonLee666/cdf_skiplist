@@ -28,6 +28,26 @@ public:
         }
     }
 
+    bool getNextByPreciseCDF(float &key, size_t &level) {
+        if (itr < size) {
+            key = keys[itr];
+            size_t location = (size_t) (cdfs[itr] * size);
+            size_t lv = 1;
+            size_t step = 2;
+            while (step <= location) {
+                if (location % step == 0) {
+                    lv++;
+                }
+                step = step << 1;
+            }
+            level = lv;
+            itr++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     bool getNextByEstimateCDF(float &key, size_t &level) {
         if (itr < size) {
             key = keys[itr];
@@ -50,19 +70,18 @@ public:
         }
     }
 
-    bool getNextByPreciseCDF(float &key, size_t &level) {
+    bool getNextByPartitionCDF(float &key, size_t &level) {
         if (itr < size) {
             key = keys[itr];
-            size_t location = (size_t) (cdfs[itr] * size);
-            size_t lv = 1;
-            size_t step = 2;
-            while (step <= location) {
-                if (location % step == 0) {
-                    lv++;
-                }
-                step = step << 1;
+            int lv;
+            size_t partition = (size_t) (cdfs[itr] * 256);
+            if(partition_array[partition]!=0){
+                lv= partition_array[partition] + max_lvl-8;
+                partition_array[partition] = 0;
+            } else {
+                lv = (random_level()<(max_lvl-8))?random_level():(max_lvl-8);
             }
-            level = lv;
+            level=lv;
             itr++;
             return true;
         } else {
@@ -70,12 +89,14 @@ public:
         }
     }
 
+
     dataset() {
         size = DATASIZE;
         itr = 0;
         keys = (float *) malloc(sizeof(float) * size);
         cdfs = (float *) malloc(sizeof(float) * size);
         level_array = (int *) malloc(sizeof(int) * (size + 1));
+        partition_array = (int *) malloc(sizeof(int) * (256 + 1));
         loadData();
         buildArray();
         srand(12345);
@@ -85,6 +106,7 @@ public:
         free(keys);
         free(cdfs);
         free(level_array);
+        free(partition_array);
     }
 
 private:
@@ -114,13 +136,24 @@ private:
     }
 
     void buildArray() {
-        for (size_t i = 0; i < size; i++) {
+        for (size_t i = 0; i <= size; i++) {
             level_array[i] = 0;
         }
         size_t step = 1;
         while (step < size) {
-            for (size_t i = 0; i < size; i += step) {
+            for (size_t i = 0; i <= size; i += step) {
                 ++(level_array[i]);
+            }
+            step = step << 1;
+        }
+////////////////////////////////////////////////////
+        for (size_t i = 0; i < 256; i++) {
+            partition_array[i] = 0;
+        }
+        step = 1;
+        while (step < 256) {
+            for (size_t i = 0; i <= 256; i += step) {
+                ++(partition_array[i]);
             }
             step = step << 1;
         }
@@ -132,4 +165,5 @@ private:
     size_t size;
     int itr;
     int *level_array;
+    int *partition_array;
 };
