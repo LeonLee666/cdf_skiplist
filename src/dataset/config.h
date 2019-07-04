@@ -9,6 +9,6 @@
 #define DATASIZE 2097152
 #define LEVEL 21
 #define MAXLEVEL 32
-
-
+#define MAXPARLEVEL 16
+#define MAXPARTITION 65536
 #endif //SKIPLIST_CONFIG_H

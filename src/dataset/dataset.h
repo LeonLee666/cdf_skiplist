@@ -12,6 +12,10 @@
 class dataset {
 public:
     static constexpr size_t max_lvl = MAXLEVEL;
+    static constexpr size_t max_parlevel = MAXPARLEVEL;
+    static constexpr size_t max_partition = MAXPARTITION;
+
+
 
     float getKey(size_t offset) {
         return keys[offset];
@@ -74,12 +78,12 @@ public:
         if (itr < size) {
             key = keys[itr];
             int lv;
-            size_t partition = (size_t) (cdfs[itr] * 256);
+            size_t partition = (size_t) (cdfs[itr] * max_partition);
             if(partition_array[partition]!=0){
-                lv= partition_array[partition] + max_lvl-8;
+                lv= partition_array[partition] + max_lvl-max_parlevel;
                 partition_array[partition] = 0;
             } else {
-                lv = (random_level()<(max_lvl-8))?random_level():(max_lvl-8);
+                lv = (random_level()<(max_lvl-max_parlevel))?random_level():(max_lvl-max_parlevel);
             }
             level=lv;
             itr++;
@@ -96,10 +100,10 @@ public:
         keys = (float *) malloc(sizeof(float) * size);
         cdfs = (float *) malloc(sizeof(float) * size);
         level_array = (int *) malloc(sizeof(int) * (size + 1));
-        partition_array = (int *) malloc(sizeof(int) * (256 + 1));
+        partition_array = (int *) malloc(sizeof(int) * (max_partition + 1));
         loadData();
         buildArray();
-        srand(12345);
+        srand(time(NULL));
     }
 
     ~dataset() {
@@ -147,12 +151,12 @@ private:
             step = step << 1;
         }
 ////////////////////////////////////////////////////
-        for (size_t i = 0; i < 256; i++) {
+        for (size_t i = 0; i <= max_partition; i++) {
             partition_array[i] = 0;
         }
         step = 1;
-        while (step < 256) {
-            for (size_t i = 0; i <= 256; i += step) {
+        while (step < max_partition) {
+            for (size_t i = 0; i <= max_partition; i += step) {
                 ++(partition_array[i]);
             }
             step = step << 1;

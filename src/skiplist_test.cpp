@@ -8,13 +8,13 @@
 using namespace std;
 using namespace cdf_list;
 
-int main() {
+int main(int argc,char* argv[]) {
     Skip_list<int> sl;
     dataset *ds = new dataset;
 
     float key;
     size_t level;
-    int method = 3;
+    int method = atoi(argv[1]);
     if (method == 0) {
         while (ds->getNextByRandom(key, level)) {
             sl.insert(key, key, level);
