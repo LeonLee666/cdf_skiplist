@@ -3,8 +3,8 @@ do
 echo ===================
 for alg in {0..3}
 do
-cd $i
+	cd normal-$i
 	../skiplist_test ${alg}
-cd ..
+	cd ..
 done
 done

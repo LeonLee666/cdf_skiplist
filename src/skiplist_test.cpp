@@ -55,7 +55,9 @@ int main(int argc,char* argv[]) {
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
 
-    std::cout << "Searching time " << (end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000 << " ms.\n";
+    double duration = ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000)/1000.0;
+    std::cout << "Searching time=" << duration << "s.  QPS=" << (DATASIZE/duration)/10000<<" W/s\n";
+
 
     //sl.toString();
     delete ds;
