@@ -12,6 +12,13 @@ datasize=2097152
 
 # 拟合样本array数据
 obs_dist = mixture_rvs(prob=[weight1, weight2], size=datasize, dist=[stats.norm, stats.norm],kwargs = (dict(loc=dist1_loc, scale=dist1_scale),dict(loc=dist2_loc, scale=dist2_scale)))
+
+
+for key in obs_dist:
+    xxx
+
+
+
 # 核密度估计，可得到 kde.support, kde.density 向量
 kde = sm.nonparametric.KDEUnivariate(obs_dist)
 kde.fit(kernel='gau')
