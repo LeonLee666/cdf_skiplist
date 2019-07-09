@@ -4,17 +4,17 @@
 #include <ctime>
 #include "SkipList.h"
 #include "dataset.h"
-
+#include "config.h"
 #include <sys/time.h>
 
 #define CLOCK_REALTIME 0
 #define CLOCK_MONOTONIC 1
 
-int clock_gettime(int clk_id, struct timespec* t) {
+int clock_gettime(int clk_id, struct timespec *t) {
     struct timeval now;
     int rv = gettimeofday(&now, NULL);
     if (rv) return rv;
-    t->tv_sec  = now.tv_sec;
+    t->tv_sec = now.tv_sec;
     t->tv_nsec = now.tv_usec * 1000;
     return 0;
 }
@@ -22,7 +22,11 @@ int clock_gettime(int clk_id, struct timespec* t) {
 using namespace std;
 using namespace cdf_list;
 
-int main(int argc,char* argv[]) {
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("paramter error!!!\n");
+    }
+    size_t datasize = set_size();
     Skip_list<int> sl;
     dataset *ds = new dataset;
 
@@ -50,13 +54,13 @@ int main(int argc,char* argv[]) {
     //clock_t t=clock();   // 计算cpu周期
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
-    for (int c = 0; c < DATASIZE; c++) {
+    for (int c = 0; c < datasize; c++) {
         bool vt = sl.search(ds->getKey(c));
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
 
-    double duration = ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000)/1000.0;
-    std::cout << "Searching time=" << duration << "s.  QPS=" << (DATASIZE/duration)/10000<<" W/s\n";
+    double duration = ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000) / 1000.0;
+    std::cout << "Searching time=" << duration << "s.  QPS=" << (datasize / duration) / 10000 << " W/s\n";
 
 
     //sl.toString();

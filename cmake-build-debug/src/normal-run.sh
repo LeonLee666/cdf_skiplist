@@ -4,7 +4,7 @@ do
 	echo ===================
 	for alg in {0..3}
 	do
-		../skiplist_test ${alg}
+		../skiplist_test_21 ${alg}
 	done
 	cd ..
 done

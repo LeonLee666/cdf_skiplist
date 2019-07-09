@@ -5,16 +5,15 @@
 #pragma once
 
 #include "config.h"
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <cmath>
+#include <cstdlib>
+#include <cstdio>
 
 class dataset {
 public:
     static constexpr size_t max_lvl = MAXLEVEL;
     static constexpr size_t max_parlevel = MAXPARLEVEL;
     static constexpr size_t max_partition = MAXPARTITION;
-
 
 
     float getKey(size_t offset) {
@@ -79,13 +78,13 @@ public:
             key = keys[itr];
             int lv;
             size_t partition = (size_t) (cdfs[itr] * max_partition);
-            if(partition_array[partition]!=0){
-                lv= partition_array[partition] + max_lvl-max_parlevel;
+            if (partition_array[partition] != 0) {
+                lv = partition_array[partition] + max_lvl - max_parlevel;
                 partition_array[partition] = 0;
             } else {
-                lv = (random_level()<(max_lvl-max_parlevel))?random_level():(max_lvl-max_parlevel);
+                lv = (random_level() < (max_lvl - max_parlevel)) ? random_level() : (max_lvl - max_parlevel);
             }
-            level=lv;
+            level = lv;
             itr++;
             return true;
         } else {
@@ -95,7 +94,7 @@ public:
 
 
     dataset() {
-        size = DATASIZE;
+        size = set_size();
         itr = 0;
         keys = (float *) malloc(sizeof(float) * size);
         cdfs = (float *) malloc(sizeof(float) * size);
@@ -131,7 +130,7 @@ private:
         }
         char tmp1[32];
         char tmp2[32];
-        for (int i = 0; i < DATASIZE; ++i) {
+        for (int i = 0; i < size; ++i) {
             fscanf(fid, "%[^,],%s", tmp1, tmp2);
             keys[i] = atof(tmp1);
             cdfs[i] = atof(tmp2);

@@ -4,7 +4,7 @@
 TEST(Slink_Test, Test_Default_Constructor) {
     cdf_list::LinkList<int> sl;
 
-    ASSERT_TRUE(sl.get_head()==NULL);
+    ASSERT_TRUE(sl.get_head() == NULL);
 }
 
 TEST(Slink_Test, Test_Init_Constructor) {
@@ -32,5 +32,5 @@ TEST(Slink_Test, Test_Find_Null) {
 
     const cdf_list::ListNode<int> *p1 = sl.find(val);
 
-    ASSERT_TRUE(p1==NULL);
+    ASSERT_TRUE(p1 == NULL);
 }

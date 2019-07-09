@@ -5,10 +5,13 @@
 #ifndef SKIPLIST_CONFIG_H
 #define SKIPLIST_CONFIG_H
 
+#include <stddef.h>
 
-#define DATASIZE 16777216
 #define MAXLEVEL 32
 #define MAXPARLEVEL 16
 #define MAXPARTITION 65536
+
+
+size_t set_size();
 
 #endif //SKIPLIST_CONFIG_H

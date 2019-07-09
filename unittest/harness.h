@@ -2,4 +2,5 @@
 
 #include "gtest/gtest.h"
 
-class LearnedIndexTest : public ::testing::Test { };
+class LearnedIndexTest : public ::testing::Test {
+};

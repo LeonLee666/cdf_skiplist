@@ -3,7 +3,6 @@ library(stats4)
 library(splines)
 library(VGAM)
 
-args=commandArgs(T)
 delta <- 0.1
 bound <- 64000000
 size <- 2097152
