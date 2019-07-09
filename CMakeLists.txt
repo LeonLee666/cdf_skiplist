@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 SET(CMAKE_C_COMPILER "gcc")
 SET(CMAKE_CXX_COMPILER "g++")
 
-PROJECT(demo)
+PROJECT(skiplist)
 
 SET(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra" CACHE INTERNAL "compiler options" FORCE)
 SET(CMAKE_CXX_FLAGS "-std=c++11" CACHE INTERNAL "compiler options" FORCE)

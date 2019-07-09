@@ -1,4 +1,4 @@
-PROJECT(demo)
+PROJECT(skiplist)
 
 FILE(GLOB_RECURSE SRC_LIST "*.cpp")
 

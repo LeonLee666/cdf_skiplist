@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     if (argc != 2) {
         printf("paramter error!!!\n");
     }
-    size_t datasize = set_size();
+    size_t datasize = get_size();
     Skip_list<int> sl;
     dataset *ds = new dataset;
 

@@ -4,6 +4,6 @@
 
 #include "config.h"
 
-size_t set_size() {
+size_t get_size() {
     return 32768;
 }

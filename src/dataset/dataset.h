@@ -94,7 +94,7 @@ public:
 
 
     dataset() {
-        size = set_size();
+        size = get_size();
         itr = 0;
         keys = (float *) malloc(sizeof(float) * size);
         cdfs = (float *) malloc(sizeof(float) * size);

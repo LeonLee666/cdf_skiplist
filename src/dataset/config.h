@@ -12,6 +12,6 @@
 #define MAXPARTITION 65536
 
 
-size_t set_size();
+size_t get_size();
 
 #endif //SKIPLIST_CONFIG_H
