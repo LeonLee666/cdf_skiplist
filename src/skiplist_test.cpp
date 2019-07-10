@@ -6,6 +6,8 @@
 #include "dataset.h"
 #include "config.h"
 #include <sys/time.h>
+#include "spdlog/spdlog.h"
+
 
 #define CLOCK_REALTIME 0
 #define CLOCK_MONOTONIC 1
@@ -60,9 +62,7 @@ int main(int argc, char *argv[]) {
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     double duration = ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000) / 1000.0;
-    std::cout << "Searching time=" << duration << "s.  QPS=" << (datasize / duration) / 10000 << " W/s\n";
-
-
+    spdlog::info("Searching time = {}, QPS = {} W/s!!", duration, (datasize / duration) / 10000);
     //sl.toString();
     delete ds;
     return 0;
