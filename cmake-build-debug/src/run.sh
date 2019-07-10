@@ -1,3 +1,6 @@
-sh normal-run.sh > 1
-sh unif-run.sh >2
-sh zipf-run.sh >3
+echo normal
+sh normal-run.sh >normal 
+echo unif
+sh unif-run.sh >unif
+echo zipf
+sh zipf-run.sh >zipf
