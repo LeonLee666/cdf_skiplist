@@ -1,0 +1,25 @@
+===========================================
+Searching time=4.141s.  QPS=50.6436 W/s
+Searching time=3.484s.  QPS=60.1938 W/s
+Searching time=2.801s.  QPS=74.8715 W/s
+Searching time=3.548s.  QPS=59.108 W/s
+===========================================
+Searching time=4.636s.  QPS=45.2362 W/s
+Searching time=3.621s.  QPS=57.9164 W/s
+Searching time=2.81s.  QPS=74.6317 W/s
+Searching time=3.263s.  QPS=64.2707 W/s
+===========================================
+Searching time=4.145s.  QPS=50.5947 W/s
+Searching time=3.448s.  QPS=60.8223 W/s
+Searching time=2.678s.  QPS=78.3104 W/s
+Searching time=3.155s.  QPS=66.4707 W/s
+===========================================
+Searching time=3.884s.  QPS=53.9946 W/s
+Searching time=3.293s.  QPS=63.6852 W/s
+Searching time=2.542s.  QPS=82.5001 W/s
+Searching time=3.026s.  QPS=69.3044 W/s
+===========================================
+Searching time=3.054s.  QPS=68.669 W/s
+Searching time=2.527s.  QPS=82.9898 W/s
+Searching time=2.091s.  QPS=100.294 W/s
+Searching time=2.307s.  QPS=90.9039 W/s
