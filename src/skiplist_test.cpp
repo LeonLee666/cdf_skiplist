@@ -51,18 +51,35 @@ int main(int argc, char *argv[]) {
         while (ds->getNextByPartitionCDF(key, level)) {
             sl.insert(key, key, level);
         }
+    } else if (method == 4) {
+        while (ds->getNextByHot(key, level)) {
+            sl.insert(key, key, level);
+        }
+    } else if (method == 5) {
+        while (ds->getNextByHotPlus(key, level)) {
+            sl.insert(key, key, level);
+        }
     }
 
     //clock_t t=clock();   // 计算cpu周期
+    size_t count = 0;
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
-    for (int c = 0; c < datasize; c++) {
-        bool vt = sl.search(ds->getKey(c));
+    for (size_t itr = 0; itr < datasize; itr++) {
+        bool vt = sl.search(ds->getKey(itr));
+        count++;
+    }
+    // search hot keys for so many times !!!
+    for (int times = 0; times < 100; times++) {
+        for (size_t itr = 0; itr < 20971; itr++) {
+            bool vt = sl.search(ds->getKey(itr));
+            count++;
+        }
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     double duration = ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000) / 1000.0;
-    spdlog::info("Searching time = {}, QPS = {} W/s!!", duration, (datasize / duration) / 10000);
+    spdlog::info("QPS = {} W/s", (count / duration) / 10000);
     //sl.toString();
     delete ds;
     return 0;

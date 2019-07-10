@@ -56,10 +56,17 @@ namespace cdf_list {
             const Skip_node<T> *x = head;
 
             for (auto i = max_lvl - 1; i >= 0 && i < max_lvl; --i) {
-                while (x->next[i]->key < key) {
-                    x = x->next[i];
+                while (1) {
+                    if (x->next[i]->key < key) {
+                        x = x->next[i];
+                    } else if (x->next[i]->key == key) {
+                        goto goto_end;
+                    } else if (x->next[i]->key > key) {
+                        break;
+                    }
                 }
             }
+            goto_end:
             return (x->next[0]->key == key) ? true : false;
         }
 

@@ -4,7 +4,7 @@
 
 ## Build
 
-`git clone https://gitee.com/bombel/cdf_skiplist.git'
+`git clone https://gitee.com/bombel/cdf_skiplist.git`
 
 `cd cdf_skiplist/thirdparty/`
 

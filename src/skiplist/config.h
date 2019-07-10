@@ -8,8 +8,11 @@
 #include <stddef.h>
 
 #define MAXLEVEL 32
-#define MAXPARLEVEL 16
-#define MAXPARTITION 65536
+#define MAX_PARTITION_LEVEL 13
+#define MAXPARTITION 8192
+
+#define HOT_LEVEL 15
+
 
 
 size_t get_size();
