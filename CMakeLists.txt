@@ -15,12 +15,14 @@ MESSAGE(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 SET(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
 
-# like gcc -I
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/googletest/googletest/include)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/include)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/skiplist)
-LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/cmake-build-debug/lib)
 
-ADD_SUBDIRECTORY(googletest)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/thirdparty/googletest/googletest/include/)
+LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/cmake-build-debug/thirdparty/googletest/googlemock/gtest/)
+
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/include/)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/skiplist/)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include/)
+
+ADD_SUBDIRECTORY(thirdparty/googletest)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(unittest)

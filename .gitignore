@@ -1,10 +1,2 @@
-
 .idea/*
-*.iml
-.idea/encodings.xml
-src/key.txt
-src/density.txt
-dataset.txt
-src/kde - 副本.py
-dataset.txt
-googletest/*
+thirdparty/*
