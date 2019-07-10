@@ -2,9 +2,9 @@
 #include <random>
 #include <iostream>
 #include <ctime>
-#include "SkipList.h"
-#include "dataset.h"
-#include "config.h"
+#include "skiplist/SkipList.h"
+#include "skiplist/dataset.h"
+#include "skiplist/config.h"
 #include <sys/time.h>
 #include "spdlog/spdlog.h"
 

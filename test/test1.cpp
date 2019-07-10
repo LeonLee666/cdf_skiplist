@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "SkipList.h"
+#include "skiplist/SkipList.h"
 
 TEST(Link_test, Test_Constructor) {
     constexpr int var = 10;

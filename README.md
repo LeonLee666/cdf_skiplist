@@ -4,14 +4,18 @@
 
 ## Build
 
-`
-git clone https://gitee.com/bombel/cdf_skiplist.git
-cd cdf_skiplist/thirdparty/
-git clone https://gitee.com/goa/googletest.git
-cd ../cmake-build-debug/
-cmake ..
-make
-`
+`git clone https://gitee.com/bombel/cdf_skiplist.git'
+
+`cd cdf_skiplist/thirdparty/`
+
+`git clone https://gitee.com/goa/googletest.git`
+
+`cd ../cmake-build-debug/`
+
+`cmake ..`
+
+`make`
+
 ## Run
 
 

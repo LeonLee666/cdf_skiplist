@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "config.h"
+#include "skiplist/config.h"
 #include <cmath>
 #include <cstdlib>
 #include <cstdio>

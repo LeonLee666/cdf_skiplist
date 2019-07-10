@@ -1,7 +1,7 @@
 //
 // Created by db on 19-7-9.
 //
-#include "config.h"
+#include "skiplist/config.h"
 
 
 size_t get_size() {

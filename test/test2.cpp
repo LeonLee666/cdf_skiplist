@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "SkipList.h"
+#include "skiplist/SkipList.h"
 
 TEST(Slink_Test, Test_Find_Exist) {
     const std::string search_w1{"Line"};
