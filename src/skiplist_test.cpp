@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
         printf("paramter error!!!\n");
     }
     size_t datasize = get_size();
-    Skip_list<int> sl;
+    Skip_list<float> sl;
     dataset *ds = new dataset;
 
     float key;
