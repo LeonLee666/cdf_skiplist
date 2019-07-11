@@ -67,7 +67,7 @@ void run_skiplist(int method, bool hot_test){
     }
     if (hot_test) {
         // search hot keys for 100 times !!!
-        for (int times = 1; times <= 100; times++) {
+        for (int times = 1; times <= 80; times++) {
             for (size_t itr = 0; itr < 20971; itr++) {
                 bool vt = sl.search(ds->getKey(itr));
                 count++;

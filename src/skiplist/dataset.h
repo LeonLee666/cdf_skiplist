@@ -15,7 +15,7 @@ public:
     static constexpr size_t max_parlevel = MAX_PARTITION_LEVEL;
     static constexpr size_t max_partition = MAXPARTITION;
     static constexpr size_t hot_level = HOT_LEVEL;
-
+    static constexpr size_t max_hot_partition = HOT_LEVEL>MAX_PARTITION_LEVEL?HOT_LEVEL:MAX_PARTITION_LEVEL;
     float getKey(size_t offset) {
         return keys[offset];
     }
@@ -77,7 +77,7 @@ public:
         if (itr < size) {
             key = keys[itr];
             int lv = 0;
-            size_t partition = (size_t) (cdfs[itr] * max_partition);
+            size_t partition = (size_t) (cdfs[itr] * (max_partition)-1);
             if (partition_array[partition] != 0) {
                 lv = partition_array[partition];
                 partition_array[partition] = 0;
@@ -111,7 +111,7 @@ public:
     bool getNextByHotPlus(float &key, size_t &level) {
         if (itr < size) {
             key = keys[itr];
-            size_t partition = (size_t) (cdfs[itr] * max_partition);
+            size_t partition = (size_t) (cdfs[itr] * (max_partition)-1);
             if (itr < 20971) {  // hot key
                 level = random_level(hot_level) + max_lvl - hot_level;
                 //partition_array[partition]=0;
@@ -121,7 +121,7 @@ public:
                     lv = partition_array[partition];
                     partition_array[partition] = 0;
                 } else {
-                    lv = random_level(max_lvl - max_parlevel);
+                    lv = random_level(max_lvl - max_hot_partition);
                 }
                 level = lv;
             }
@@ -139,7 +139,7 @@ public:
         keys = (float *) malloc(sizeof(float) * size);
         cdfs = (float *) malloc(sizeof(float) * size);
         level_array = (int *) malloc(sizeof(int) * (size + 1));
-        partition_array = (int *) malloc(sizeof(int) * (max_partition + 1));
+        partition_array = (int *) malloc(sizeof(int) * max_partition);
         loadData();
         buildArray();
         srand(time(NULL));
@@ -190,12 +190,12 @@ private:
             step = step << 1;
         }
 ////////////////////////////////////////////////////
-        for (size_t i = 0; i <= max_partition; i++) {
+        for (size_t i = 0; i < max_partition; i++) {
             partition_array[i] = max_lvl - max_parlevel;
         }
         step = 1;
         while (step < max_partition) {
-            for (size_t i = 0; i <= max_partition; i += step) {
+            for (size_t i = 0; i < max_partition; i += step) {
                 ++(partition_array[i]);
             }
             step = step << 1;
