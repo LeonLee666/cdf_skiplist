@@ -84,16 +84,17 @@ void run_skiplist(int method, bool hot_test){
 
 
 int main(int argc, char *argv[]) {
-
-    std::cout<<"==========================\n";
     for(int i=0;i<=3;i++){
         run_skiplist(i,false);
     }
-    std::cout<<"==========================\n";
-    run_skiplist(0,true);
-    run_skiplist(3,true);
-    run_skiplist(4,true);
-    run_skiplist(5,true);
+    if(argc==2)
+    if(!strcmp(argv[1],"-hot")) {
+        std::cout << "==========================\n";
+        run_skiplist(0, true);
+        run_skiplist(3, true);
+        run_skiplist(4, true);
+        run_skiplist(5, true);
+    }
 
     return 0;
 }
