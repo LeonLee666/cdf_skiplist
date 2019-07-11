@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo normal
 sh normal-gen.sh  
 echo unif

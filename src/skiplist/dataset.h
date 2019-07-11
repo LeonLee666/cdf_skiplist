@@ -96,7 +96,7 @@ public:
         if (itr < size) {
             key = keys[itr];
             if (itr < 20971) {  // hot key
-                level = random_level(max_parlevel) + max_lvl - hot_level;
+                level = random_level(hot_level) + max_lvl - hot_level;
                 //partition_array[partition]=0;
             } else {
                 level = random_level(max_lvl - hot_level);
@@ -114,7 +114,7 @@ public:
             size_t partition = (size_t) (cdfs[itr] * (max_partition)-1);
             if (itr < 20971) {  // hot key
                 level = random_level(hot_level) + max_lvl - hot_level;
-                //partition_array[partition]=0;
+                partition_array[partition]=0;
             } else {
                 int lv;
                 if (partition_array[partition] != 0) {

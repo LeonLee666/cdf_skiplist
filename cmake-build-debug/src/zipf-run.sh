@@ -1,4 +1,5 @@
-for size in 1 3 5 7 9
+#!/usr/bin/env bash
+for size in 1 3 5 7 
 do
 cd zipf-${size}
 echo ===========zipf-${size}======================

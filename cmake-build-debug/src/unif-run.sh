@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 for size in 15 18 21 24
 do
 cd unif-${size}

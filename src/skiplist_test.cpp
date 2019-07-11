@@ -78,7 +78,6 @@ void run_skiplist(int method, bool hot_test){
 
     double duration = ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000) / 1000.0;
     spdlog::info("QPS = {} W/s", (count / duration) / 10000);
-    //sl.toString();
     delete ds;
 }
 
