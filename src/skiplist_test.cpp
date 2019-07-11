@@ -24,17 +24,13 @@ int clock_gettime(int clk_id, struct timespec *t) {
 using namespace std;
 using namespace cdf_list;
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("paramter error!!!\n");
-    }
+void run_skiplist(int method, bool hot_test){
     size_t datasize = get_size();
     Skip_list<float> sl;
     dataset *ds = new dataset;
 
     float key;
     size_t level;
-    int method = atoi(argv[1]);
     if (method == 0) {
         while (ds->getNextByRandom(key, level)) {
             sl.insert(key, key, level);
@@ -69,11 +65,13 @@ int main(int argc, char *argv[]) {
         bool vt = sl.search(ds->getKey(itr));
         count++;
     }
-    // search hot keys for so many times !!!
-    for (int times = 0; times < 100; times++) {
-        for (size_t itr = 0; itr < 20971; itr++) {
-            bool vt = sl.search(ds->getKey(itr));
-            count++;
+    if (hot_test) {
+        // search hot keys for 100 times !!!
+        for (int times = 1; times <= 100; times++) {
+            for (size_t itr = 0; itr < 20971; itr++) {
+                bool vt = sl.search(ds->getKey(itr));
+                count++;
+            }
         }
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
@@ -82,5 +80,20 @@ int main(int argc, char *argv[]) {
     spdlog::info("QPS = {} W/s", (count / duration) / 10000);
     //sl.toString();
     delete ds;
+}
+
+
+int main(int argc, char *argv[]) {
+
+    std::cout<<"==========================\n";
+    for(int i=0;i<=3;i++){
+        run_skiplist(i,false);
+    }
+    std::cout<<"==========================\n";
+    run_skiplist(0,true);
+    run_skiplist(3,true);
+    run_skiplist(4,true);
+    run_skiplist(5,true);
+
     return 0;
 }

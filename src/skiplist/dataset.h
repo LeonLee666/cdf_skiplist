@@ -78,25 +78,13 @@ public:
             key = keys[itr];
             int lv = 0;
             size_t partition = (size_t) (cdfs[itr] * max_partition);
-            //int bound = 1;
-            //size_t lower_bound = (partition - bound > 1) ? (partition - bound) : 1;
-            //size_t upper_bound = (partition + bound < max_partition) ? (partition + bound) : max_partition;
-
-//            for (size_t i = lower_bound; i <= upper_bound; i++) {
-//                if (partition_array[i] >= lv) {
-//                    lv = partition_array[i] + max_lvl - max_parlevel;
-//                    partition_array[i] = 0;
-//                }
-//            }
             if (partition_array[partition] != 0) {
-                lv = partition_array[partition] + max_lvl - max_parlevel;
+                lv = partition_array[partition];
                 partition_array[partition] = 0;
             } else {
                 lv = random_level(max_lvl - max_parlevel);
             }
             level = lv;
-
-            //std::cout<<itr<<"\n";
             itr++;
             return true;
         } else {
@@ -108,10 +96,10 @@ public:
         if (itr < size) {
             key = keys[itr];
             if (itr < 20971) {  // hot key
-                level = random_level(max_parlevel) + max_lvl - max_parlevel;
+                level = random_level(max_parlevel) + max_lvl - hot_level;
                 //partition_array[partition]=0;
             } else {
-                level = random_level(max_lvl - max_parlevel);
+                level = random_level(max_lvl - hot_level);
             }
             itr++;
             return true;
@@ -130,7 +118,7 @@ public:
             } else {
                 int lv;
                 if (partition_array[partition] != 0) {
-                    lv = partition_array[partition] + max_lvl - max_parlevel;
+                    lv = partition_array[partition];
                     partition_array[partition] = 0;
                 } else {
                     lv = random_level(max_lvl - max_parlevel);
@@ -203,7 +191,7 @@ private:
         }
 ////////////////////////////////////////////////////
         for (size_t i = 0; i <= max_partition; i++) {
-            partition_array[i] = 0;
+            partition_array[i] = max_lvl - max_parlevel;
         }
         step = 1;
         while (step < max_partition) {
