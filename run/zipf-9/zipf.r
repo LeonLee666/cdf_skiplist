@@ -8,7 +8,7 @@ bound <- 64000000
 size <- 2097152
 x <- rzipf(size,bound,delta)
 # x <- sort(x)
-sink("dataset.txt")
+sink("dataset.dat")
 cdf <- ecdf(x)
 for( i in 1:size)
 	cat(x[i],",",cdf(x[i]),"\n")

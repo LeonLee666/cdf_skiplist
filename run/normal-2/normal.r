@@ -1,4 +1,4 @@
-sink("dataset.txt")
+sink("dataset.dat")
 size=2097152
 x <- rnorm(size,10,2)
 cdf <- ecdf(x)

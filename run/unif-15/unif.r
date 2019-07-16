@@ -1,4 +1,4 @@
-sink("dataset.txt")
+sink("dataset.dat")
 size=32768
 x <- runif(size)
 cdf <- ecdf(x)

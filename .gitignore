@@ -1,3 +1,5 @@
 .idea/*
 thirdparty/googletest/*
 cmake-build-debug/*
+*.dat
+*.dat
