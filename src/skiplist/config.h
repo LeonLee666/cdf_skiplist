@@ -13,8 +13,6 @@
 
 #define HOT_LEVEL 20
 
-
-
 size_t get_size();
-
+void set_size(size_t size);
 #endif //SKIPLIST_CONFIG_H

@@ -83,6 +83,7 @@ void run_skiplist(int method, bool hot_test){
 
 
 int main(int argc, char *argv[]) {
+    set_size(2097152);
     for(int i=0;i<=3;i++){
         run_skiplist(i,false);
     }

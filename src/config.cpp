@@ -4,8 +4,12 @@
 
 #include "skiplist/config.h"
 
+size_t sz;
 
+void set_size(size_t size){
+    sz=size;
+}
 size_t get_size() {
-    return 2097152;
+    return sz;
 }
 
