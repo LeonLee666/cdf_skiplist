@@ -11,11 +11,11 @@
 
 class dataset {
 public:
-    static constexpr size_t max_lvl = MAXLEVEL;
-    static constexpr size_t max_parlevel = MAX_PARTITION_LEVEL;
-    static constexpr size_t max_partition = MAXPARTITION;
-    static constexpr size_t hot_level = HOT_LEVEL;
-    static constexpr size_t max_hot_partition = HOT_LEVEL>MAX_PARTITION_LEVEL?HOT_LEVEL:MAX_PARTITION_LEVEL;
+    size_t max_lvl = get_MAXLEVEL();
+    size_t max_parlevel = get_MAX_PARTITION_LEVEL();
+    size_t max_partition = get_MAXPARTITION();
+    size_t hot_level = get_HOT_LEVEL();
+    size_t max_hot_partition = hot_level>max_parlevel?hot_level:max_parlevel;
     float getKey(size_t offset) {
         return keys[offset];
     }
@@ -163,9 +163,9 @@ private:
     }
 
     void loadData() {
-        FILE *fid = fopen("dataset.txt", "r");
+        FILE *fid = fopen("dataset.dat", "r");
         if (fid == NULL) {
-            printf("open %s error", "dataset.txt");
+            printf("open %s error", "dataset.dat");
             return;
         }
         char tmp1[32];

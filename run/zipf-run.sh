@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-export PATH="$PATH:`pwd`/../cmake-build-debug/src/"
 for size in 1 3 5 7 
 do
 cd zipf-${size}
 echo ===========zipf-${size}======================
-../skiplist_test_21 
+for alg in 0 1 2 3
+do
+skiplist 32 2097152 20 13 8192 0 ${alg}
+done
 cd ..
 done

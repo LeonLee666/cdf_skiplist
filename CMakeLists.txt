@@ -16,11 +16,11 @@ SET(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
 
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/thirdparty/googletest/googletest/include/)
-LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/cmake-build-debug/thirdparty/googletest/googlemock/gtest/)
+LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/cmake-build-debug/lib/)
+
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include/)
-
-
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/)
+
 ADD_SUBDIRECTORY(thirdparty/googletest)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(test)

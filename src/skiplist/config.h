@@ -7,12 +7,19 @@
 
 #include <stddef.h>
 
-#define MAXLEVEL 32
-#define MAX_PARTITION_LEVEL 13
-#define MAXPARTITION 8192
+size_t get_MAXLEVEL();
+void set_MAXLEVEL(size_t size);
 
-#define HOT_LEVEL 20
+size_t get_MAX_PARTITION_LEVEL();
+void set_MAX_PARTITION_LEVEL(size_t size);
+
+size_t get_MAXPARTITION();
+void set_MAXPARTITION(size_t size);
+
+size_t get_HOT_LEVEL();
+void set_HOT_LEVEL(size_t size);
 
 size_t get_size();
 void set_size(size_t size);
+
 #endif //SKIPLIST_CONFIG_H

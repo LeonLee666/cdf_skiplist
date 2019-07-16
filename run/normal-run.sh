@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-export PATH="$PATH:`pwd`/../cmake-build-debug/src/"
-for i in 1 3 5 7 9 
+for i in 1 3 5 7 9
 do
-	cd normal-$i
-	echo =======normal $i============
-	../skiplist_test_21 ${alg}
-	cd ..
+cd normal-${i}
+echo =======normal $i============
+for alg in 0 1 2 3
+do
+skiplist 32 2097152 20 13 8192 0 ${alg}
+done
+cd ..
 done

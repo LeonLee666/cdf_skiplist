@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-export PATH="$PATH:`pwd`/../cmake-build-debug/src/"
-for size in 15 18 21 24
+
+declare -A map=(["15"]="32768" ["18"]="262144" ["21"]="2097152" ["24"]="16777216")
+for size in ${!map[@]}
 do
 cd unif-${size}
 echo ============unif-${size}==========================
-../skiplist_test_${size} 
+for alg in 0 1 2 3
+do
+skiplist 32 ${map[$size]} 20 13 8192 0 ${alg}
+done
 cd ..
 done

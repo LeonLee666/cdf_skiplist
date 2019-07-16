@@ -8,7 +8,6 @@
 #include <sys/time.h>
 #include "spdlog/spdlog.h"
 
-
 #define CLOCK_REALTIME 0
 #define CLOCK_MONOTONIC 1
 
@@ -24,7 +23,7 @@ int clock_gettime(int clk_id, struct timespec *t) {
 using namespace std;
 using namespace cdf_list;
 
-void run_skiplist(int method, bool hot_test){
+void run_skiplist(int method, bool hot_test) {
     size_t datasize = get_size();
     Skip_list<float> sl;
     dataset *ds = new dataset;
@@ -77,24 +76,26 @@ void run_skiplist(int method, bool hot_test){
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     double duration = ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000) / 1000.0;
-    spdlog::info("QPS = {} W/s", (count / duration) / 10000);
+    spdlog::info("Skiplist = {}, QPS = {} W/s",method, (count / duration) / 10000);
     delete ds;
 }
 
 
 int main(int argc, char *argv[]) {
-    set_size(2097152);
-    for(int i=0;i<=3;i++){
-        run_skiplist(i,false);
+    if (argc != 8) {
+        std::cout << "error\n";
+        std::cout << "skiplist (maxlevel) (datasize) (hot-level) (partition-level) (partition) [0/1] [alglrithms]\n";
     }
-    if(argc==2)
-    if(!strcmp(argv[1],"-hot")) {
-        std::cout << "==========================\n";
-        run_skiplist(0, true);
-        run_skiplist(3, true);
-        run_skiplist(4, true);
-        run_skiplist(5, true);
-    }
+    set_MAXLEVEL(atol(argv[1]));  //32
+    set_size(atol(argv[2]));  //2097152,set_size(334863);
+    set_HOT_LEVEL(atol(argv[3]));    // 20
+    set_MAX_PARTITION_LEVEL(atol(argv[4]));  //    13
+    set_MAXPARTITION(atol(argv[5]));  // 2^13
 
+    if (atoi(argv[6]) == 0) {
+        run_skiplist(atoi(argv[7]), false);
+    } else {
+        run_skiplist(atoi(argv[7]), true);
+    }
     return 0;
 }
