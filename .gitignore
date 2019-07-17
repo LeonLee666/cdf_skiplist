@@ -3,3 +3,4 @@ thirdparty/googletest/*
 cmake-build-debug/*
 *.dat
 *.dat
+*.pyc
