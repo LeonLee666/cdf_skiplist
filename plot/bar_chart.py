@@ -52,7 +52,7 @@ def DrawFigure(x_values, y_values, legend_labels, x_label, y_label, y_min, y_max
   # sometimes you may not want to draw legends.
   if allow_legend == True:
     figure.legend(bars, legend_labels, prop=LEGEND_FP, 
-                     loc='upper center', ncol=len(y_values), bbox_to_anchor=(0.45, 1.2), shadow=False,
+                     loc='upper center', ncol=2, bbox_to_anchor=(0.45, 1.2), shadow=False,
                      frameon=False, borderaxespad=0.0, handlelength=2, labelspacing=0.2)
 
   plt.xticks(index, x_values)

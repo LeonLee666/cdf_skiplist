@@ -16,5 +16,5 @@ if __name__ == "__main__":
 
   legend_labels = ['Skip-list', 'cdf-list', 'bound-list', 'partition-list']
 
-  bar_chart.DrawFigure(x_values, y_values, legend_labels, 'dataset', 'QPS', 0, 30, figure_folder, 'real-set', True)
+  bar_chart.DrawFigure(x_values, y_values, legend_labels, 'dataset', 'QPS [W/s]', 0, 30, figure_folder, 'real-set', True)
 

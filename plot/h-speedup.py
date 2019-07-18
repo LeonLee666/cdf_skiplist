@@ -37,8 +37,8 @@ def DrawFigure(x_values, y_values, legend_labels, x_label, y_label, x_min, x_max
   # sometimes you may not want to draw legends.
   if allow_legend == True:
     ax.legend(lines, legend_labels, prop=LEGEND_FP, 
-                     loc='upper center', ncol=4, bbox_to_anchor=(0.45, 1.2), shadow=False,
-                     frameon=True, borderaxespad=0.0, handlelength=2, labelspacing=0.2)
+                     loc='upper center', ncol=2, bbox_to_anchor=(0.45, 1.2), shadow=False,
+                     frameon=False, borderaxespad=0.0, handlelength=2, labelspacing=0.2)
 
   plt.xticks(x_values)
   # you may control the limits on your own.
@@ -70,10 +70,10 @@ if __name__ == "__main__":
   figure_folder='./'
 
   # draw line chart
-  legend_labels = ['partition-list','skiplist']
+  legend_labels = ['hot-list','skiplist']
   parameters, lines = ReadFile()
 
-  DrawFigure(parameters, lines, legend_labels, 'Parameters', 'QPS [W/s]', 5, 30
+  DrawFigure(parameters, lines, legend_labels, 'h', 'Speedup', 5, 30
 , 0.4, 1.8, figure_folder, 'h-speedup', True)
 
 
